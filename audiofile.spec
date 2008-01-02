@@ -15,6 +15,7 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%name/%{name}-%{version}.tar.bz2
 Patch0:		audiofile-0.2.6-libdir.patch
 Patch1:		audiofile-underquoted.patch
 URL:		http://www.68k.org/~michael/audiofile/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The Silicon Graphics Audio File Library provides a uniform programming 
