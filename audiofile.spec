@@ -1,6 +1,6 @@
 %define	name	audiofile
 %define	version	0.2.6
-%define	release	%mkrel 13
+%define	release	%mkrel 14
 %define	lib_major 0
 %define	lib_name %mklibname %{name} %{lib_major}
 
