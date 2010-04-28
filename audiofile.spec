@@ -1,6 +1,6 @@
 %define	name	audiofile
-%define	version	0.2.6
-%define	release	%mkrel 15
+%define	version	0.2.7
+%define	release	%mkrel 1
 %define	lib_major 0
 %define	lib_name %mklibname %{name} %{lib_major}
 
@@ -8,29 +8,17 @@ Summary:	Library to handle various audio file formats
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-License:	LGPL
+License:	LGPLv2+
 Group:		System/Libraries
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%name/%{name}-%{version}.tar.bz2
 # (fc) 0.2.3-3mdk don't add -L/usr/lib to ldflags
 Patch0:		audiofile-0.2.6-libdir.patch
 # the debian patches comes from audiofile_0.2.6-8.diff.gz
-Patch1:		10_update_docs.dpatch
-Patch2:		10_update_libtool.dpatch
-Patch3:		10_export_vfs.dpatch
 Patch4:		10_pack_real_char3.dpatch
-Patch5:		10_incorrect_wav_size.dpatch
-Patch6:		10_au_length_unspecified.dpatch
-Patch7:		10_support_nonstandard_aiffc.dpatch
 Patch8:		10_sfinfo_no_options.dpatch
-Patch9:		10_sfconvert_add_nist_support.dpatch
-Patch10:	10_warning_fixes.dpatch
-Patch11:	10_m4_quoting_fix.dpatch
 Patch12:	10_include_audiofile_in_af_vfs.dpatch
 Patch13:	10_pkgconfig_privlibs.dpatch
 Patch14:	10_float_size_calculation_fix.dpatch
-Patch15:	20_exports_vpath_fix.dpatch
-Patch16:	21_exports_vpath_fixup.dpatch
-Patch17:	22_CVE-2008-5824.dpatch
 URL:		http://www.68k.org/~michael/audiofile/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -65,24 +53,7 @@ applications.
 
 %prep
 %setup -q
-%patch0 -p1 -b .libdir
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
-%patch17 -p1 -b .CVE-2008-5824
+%apply_patches
 
 %build
 %configure2_5x --enable-largefile
