@@ -1,6 +1,6 @@
 %define	name	audiofile
-%define	version	0.2.7
-%define	release	%mkrel 3
+%define	version	0.3.0
+%define	release	%mkrel 1
 %define	lib_major 0
 %define	lib_name %mklibname %{name} %{lib_major}
 
@@ -10,17 +10,10 @@ Version:	%{version}
 Release:	%{release}
 License:	LGPLv2+
 Group:		System/Libraries
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%name/%{name}-%{version}.tar.bz2
-# (fc) 0.2.3-3mdk don't add -L/usr/lib to ldflags
-Patch0:		audiofile-0.2.6-libdir.patch
-# the debian patches comes from audiofile_0.2.6-8.diff.gz
-Patch4:		10_pack_real_char3.dpatch
-Patch8:		10_sfinfo_no_options.dpatch
-Patch12:	10_include_audiofile_in_af_vfs.dpatch
-Patch13:	10_pkgconfig_privlibs.dpatch
-Patch14:	10_float_size_calculation_fix.dpatch
+Source0:	http://www.68k.org/~michael/audiofile/%{name}-%{version}.tar.gz
 URL:		http://www.68k.org/~michael/audiofile/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:  alsa-lib-devel
 
 %description
 The Silicon Graphics Audio File Library provides a uniform programming 
@@ -57,19 +50,11 @@ applications.
 
 %build
 %configure2_5x --enable-largefile
-%make
+%make CXX="g++ -w"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
-
-%if %mdkversion < 200900
-%post -n %{lib_name} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{lib_name} -p /sbin/ldconfig
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -83,17 +68,16 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{lib_name}
 %defattr(-, root, root)
 %doc COPYING README
-%{_libdir}/*.so.*
+%{_libdir}/libaudiofile.so.%{lib_major}*
 
 %files -n %{lib_name}-devel
 %defattr(-, root, root)
 %doc COPYING README ACKNOWLEDGEMENTS TODO NEWS NOTES ChangeLog docs
-%{_bindir}/audiofile-config
 %{_libdir}/*.a
 %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
-%{_datadir}/aclocal/*.m4
 %{_libdir}/pkgconfig/*
-
+%_mandir/man3/*
+%_mandir/mant/*
 
