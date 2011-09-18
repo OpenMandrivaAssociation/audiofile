@@ -1,5 +1,5 @@
 %define	name	audiofile
-%define	version	0.3.0
+%define	version	0.3.1
 %define	release	%mkrel 1
 %define	lib_major 0
 %define	lib_name %mklibname %{name} %{lib_major}
@@ -64,6 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING README
 %{_bindir}/sfconvert
 %{_bindir}/sfinfo
+%_mandir/man1/*
 
 %files -n %{lib_name}
 %defattr(-, root, root)
@@ -79,5 +80,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %_mandir/man3/*
-%_mandir/mant/*
 
