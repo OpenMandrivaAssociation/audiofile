@@ -10,7 +10,7 @@ Version:	%{version}
 Release:	%{release}
 License:	LGPLv2+
 Group:		System/Libraries
-Source0:	http://www.68k.org/~michael/audiofile/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%name/%{name}-%{version}.tar.xz
 URL:		http://www.68k.org/~michael/audiofile/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  alsa-lib-devel
