@@ -56,6 +56,7 @@ autoreconf -fi
 %install
 rm -rf %{buildroot}
 %makeinstall_std
+rm -f %{buildroot}%{_libdir}/*.la
 
 %files
 %doc COPYING README
