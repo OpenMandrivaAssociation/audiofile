@@ -1,19 +1,16 @@
-%define	name	audiofile
-%define	version	0.3.2
-%define	release	%mkrel 1
-%define	lib_major 0
-%define	lib_name %mklibname %{name} %{lib_major}
+%define	major 0
+%define	libname %mklibname %{name} %{major}
+%define	libnamedev %mklibname %{name} -d
 
 Summary:	Library to handle various audio file formats
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		audiofile
+Version:	0.3.2
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%name/%{name}-%{version}.tar.xz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/audiofile/%{name}-%{version}.tar.xz
 Patch0:		audiofile-0.3.2-fix-linking.patch
 URL:		http://www.68k.org/~michael/audiofile/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  alsa-lib-devel
 
 %description
@@ -25,23 +22,23 @@ NeXT/Sun .snd/.au. Supported compression formats are currently G.711
 mu-law and A-law. 
 Used by the esound daemon.
 
-%package -n	%{lib_name}
+%package -n	%{libname}
 Summary:	Main library for audiofile 
 Group:		System/Libraries
 
-%description -n	%{lib_name}
+%description -n	%{libname}
 This package contains the library needed to run programs dynamically
 linked with audiofile.
 
-%package -n	%{lib_name}-devel
+%package -n	%{libnamedev}
 Summary:	Includes and other files to develop audiofile applications
 Group:		Development/C
-Requires:	%{lib_name} = %{version}
-Provides:	lib%{name}-devel = %{version}
-Provides:	audiofile-devel = %{version}
-Obsoletes:	audiofile-devel
+Requires:	%{libname} = %{version}
+Provides:	lib%{name}-devel = %{version}-%{release}
+Provides:	audiofile-devel = %{version}-%{release}
+Obsoletes:	%{libname}-devel
 
-%description -n	%{lib_name}-devel
+%description -n	%{libnamedev}
 Libraries, include files and other resources you can use to develop audiofile
 applications.
 
@@ -49,38 +46,29 @@ applications.
 %setup -q
 %apply_patches
 
-autoreconf -fi
-
 %build
-%configure2_5x --enable-largefile
+autoreconf -fi
+%configure2_5x \
+    --enable-largefile \
+    --disable-static
 %make CXX="g++ -w"
 
 %install
 rm -rf %{buildroot}
 %makeinstall_std
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-, root, root)
 %doc COPYING README
 %{_bindir}/sfconvert
 %{_bindir}/sfinfo
-%_mandir/man1/*
+%{_mandir}/man1/*
 
-%files -n %{lib_name}
-%defattr(-, root, root)
-%doc COPYING README
-%{_libdir}/libaudiofile.so.%{lib_major}*
+%files -n %{libname}
+%{_libdir}/libaudiofile.so.%{major}*
 
-%files -n %{lib_name}-devel
-%defattr(-, root, root)
+%files -n %{libnamedev}
 %doc COPYING README ACKNOWLEDGEMENTS TODO NEWS NOTES ChangeLog docs
-%{_libdir}/*.a
-%{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %_mandir/man3/*
-
