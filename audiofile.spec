@@ -1,15 +1,14 @@
-%define	major 0
+%define	major 1
 %define	libname %mklibname %{name} %{major}
 %define	libnamedev %mklibname %{name} -d
 
 Summary:	Library to handle various audio file formats
 Name:		audiofile
-Version:	0.3.2
-Release:	2
+Version:	0.3.3
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/audiofile/%{name}-%{version}.tar.xz
-Patch0:		audiofile-0.3.2-fix-linking.patch
 URL:		http://www.68k.org/~michael/audiofile/
 BuildRequires:  alsa-lib-devel
 
@@ -47,7 +46,6 @@ applications.
 %apply_patches
 
 %build
-autoreconf -fi
 %configure2_5x \
     --enable-largefile \
     --disable-static
