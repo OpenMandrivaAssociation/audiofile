@@ -10,7 +10,7 @@ License:	LGPLv2+
 Group:		System/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/audiofile/%{name}-%{version}.tar.xz
 URL:		http://www.68k.org/~michael/audiofile/
-BuildRequires:  alsa-lib-devel
+BuildRequires:  libalsa-devel
 
 %description
 The Silicon Graphics Audio File Library provides a uniform programming 
