@@ -8,7 +8,7 @@ Summary:	Library to handle various audio file formats
 Name:		audiofile
 Version:	0.3.6
 Release:	1
-License:	LGPLv2+
+License:	LGPLv2.1+
 Group:		System/Libraries
 URL:		http://www.68k.org/~michael/audiofile/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/audiofile/%{url_ver}/%{name}-%{version}.tar.xz
@@ -64,7 +64,6 @@ applications.
 %{_libdir}/pkgconfig/*
 %{_mandir}/man3/*
 
-
 #------------------------------------------------------------------------
 
 %prep
@@ -75,9 +74,9 @@ applications.
 %configure2_5x \
 	--enable-largefile \
 	--disable-static
+
 %make CXX="g++ -w"
 
 %install
 %makeinstall_std
-
 
