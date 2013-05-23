@@ -75,7 +75,7 @@ applications.
 	--enable-largefile \
 	--disable-static
 
-%make CXX="g++ -w"
+%make CXX="%{__cxx} -w"
 
 %install
 %makeinstall_std
