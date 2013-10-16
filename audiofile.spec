@@ -7,7 +7,7 @@
 Summary:	Library to handle various audio file formats
 Name:		audiofile
 Version:	0.3.6
-Release:	4
+Release:	5
 License:	LGPLv2.1+
 Group:		System/Libraries
 URL:		http://www.68k.org/~michael/audiofile/
