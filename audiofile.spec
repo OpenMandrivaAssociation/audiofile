@@ -16,11 +16,20 @@
 Summary:	Library to handle various audio file formats
 Name:		audiofile
 Version:	0.3.6
-Release:	16
+Release:	17
 License:	LGPLv2.1+
 Group:		System/Libraries
 URL:		http://www.68k.org/~michael/audiofile/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/audiofile/%{url_ver}/%{name}-%{version}.tar.xz
+Patch0:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-CVE-2015-7747.patch
+Patch1:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-left-shift-neg.patch
+Patch2:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-narrowing.patch
+Patch3:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-pull42.patch
+Patch4:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-pull43.patch
+Patch5:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-pull44.patch
+Patch6:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/822b732fd31ffcb78f6920001e9b1fbd815fa712.patch
+Patch7:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/941774c8c0e79007196d7f1e7afdc97689f869b3.patch
+Patch8:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/fde6d79fb8363c4a329a184ef0b107156602b225.patch
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(flac)
 %if %{with compat32}
@@ -79,6 +88,7 @@ applications.
 
 #------------------------------------------------------------------------
 
+%if %{with compat32}
 %package -n	%{lib32name}
 Summary:	Main library for audiofile (32-bit)
 Group:		System/Libraries
@@ -105,6 +115,7 @@ applications.
 %files -n %{dev32name}
 %{_prefix}/lib/*.so
 %{_prefix}/lib/pkgconfig/*
+%endif
 
 #------------------------------------------------------------------------
 
@@ -127,9 +138,9 @@ cd build
 
 %build
 %if %{with compat32}
-%make_build CXX="g++ -fpermissive" -C build32
+%make_build -C build32
 %endif
-%make_build CXX="%{__cxx} -w" -C build
+%make_build -C build
 
 %install
 %if %{with compat32}
