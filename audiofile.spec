@@ -16,7 +16,7 @@
 Summary:	Library to handle various audio file formats
 Name:		audiofile
 Version:	0.3.6
-Release:	17
+Release:	18
 License:	LGPLv2.1+
 Group:		System/Libraries
 URL:		http://www.68k.org/~michael/audiofile/
@@ -51,7 +51,7 @@ Used by the esound daemon.
 %doc COPYING README
 %{_bindir}/sfconvert
 %{_bindir}/sfinfo
-%{_mandir}/man1/*
+%doc %{_mandir}/man1/*
 
 #------------------------------------------------------------------------
 
@@ -84,7 +84,7 @@ applications.
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
-%{_mandir}/man3/*
+%doc %{_mandir}/man3/*
 
 #------------------------------------------------------------------------
 
