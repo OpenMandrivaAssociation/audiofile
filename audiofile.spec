@@ -19,7 +19,7 @@ Version:	0.3.6
 Release:	20
 License:	LGPLv2.1+
 Group:		System/Libraries
-URL:		http://www.68k.org/~michael/audiofile/
+URL:		https://www.68k.org/~michael/audiofile/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/audiofile/%{url_ver}/%{name}-%{version}.tar.xz
 Patch0:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-CVE-2015-7747.patch
 Patch1:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3.6-left-shift-neg.patch
