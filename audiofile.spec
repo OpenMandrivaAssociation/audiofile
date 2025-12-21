@@ -30,6 +30,11 @@ Patch5:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/audiofile-0.3
 Patch6:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/822b732fd31ffcb78f6920001e9b1fbd815fa712.patch
 Patch7:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/941774c8c0e79007196d7f1e7afdc97689f869b3.patch
 Patch8:		https://src.fedoraproject.org/rpms/audiofile/raw/master/f/fde6d79fb8363c4a329a184ef0b107156602b225.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(flac)
 %if %{with compat32}
